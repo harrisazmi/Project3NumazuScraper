@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>沼津市 Scraper</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #333;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #scrapeButton {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #downloadButton {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #38090f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #scrapeButton:hover,
+      #downloadButton:hover {
+        background-color: #660d0d;
+      }
+
+      #contentContainer {
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="contentContainer">
+      <h1>Scraping for 観察 and 地震 on 沼津市</h1>
+      <p>
+        Use this tool responsibly! Avoid abuse to prevent IP blocking. Only use
+        when urgently needed for 沼津市 (Numazu City).
+      </p>
+      <button id="scrapeButton">Start Retrieval</button>
+      <p>Download last Successful Info Updated If Website is heavily loaded</p>
+      <button id="downloadButton">Download Files</button>
+    </div>
+    <script>
+      document
+        .getElementById("scrapeButton")
+        .addEventListener("click", async function () {
+          try {
+            const response = await fetch(
+              "https://project3backend.harrisviewcodes.uk/scrape"
+            );
+            const data = await response.json();
+
+            // Display the paths or perform additional actions if needed
+            console.log("Screenshot Path:", data.screenshotPath);
+            console.log("Detail Observation Path:", data.detailObservationPath);
+            console.log("Detail Earthquake Path:", data.detailEarthquakePath);
+
+            // Trigger separate downloads
+            const downloadFile = async (url, fileName) => {
+              const secureUrl = url.replace("http://", "https://");
+              const response = await fetch(secureUrl);
+              const blob = await response.blob();
+              const link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob).replace(
+                "http://",
+                "https://"
+              );
+              link.download = fileName;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            };
+
+            downloadFile(data.screenshotPath, "screenshot.png");
+            downloadFile(data.detailObservationPath, "detailObservation.txt");
+            downloadFile(data.detailEarthquakePath, "detailEarthquake.txt");
+          } catch (error) {
+            console.error("Error triggering scrape:", error);
+          }
+        });
+    </script>
+    <script>
+      async function downloadFile(url, filename) {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", async () => {
+          const filesToDownload = [
+            {
+              url: "https://project3backend.harrisviewcodes.uk/screenshotimg.png",
+              filename: "screenshotimg.png",
+            },
+            {
+              url: "https://project3backend.harrisviewcodes.uk/detailObservation.txt",
+              filename: "detailObservation.txt",
+            },
+            {
+              url: "https://project3backend.harrisviewcodes.uk/detailEarthquake.txt",
+              filename: "detailEarthquake.txt",
+            },
+          ];
+
+          // Download each file using the fetch API
+          for (const file of filesToDownload) {
+            await downloadFile(file.url, file.filename);
+          }
+        });
+    </script>
+  </body>
+</html>
