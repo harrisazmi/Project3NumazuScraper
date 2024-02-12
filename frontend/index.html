@@ -73,7 +73,9 @@
         .getElementById("scrapeButton")
         .addEventListener("click", async function () {
           try {
-            const response = await fetch("http://192.168.0.8:3333/scrape");
+            const response = await fetch(
+              "https://project3backend.harrisviewcodes.uk/scrape"
+            );
             const data = await response.json();
 
             // Display the paths or perform additional actions if needed
@@ -122,15 +124,15 @@
         .addEventListener("click", async () => {
           // Download each file using the fetch API
           await downloadFile(
-            "http://192.168.0.8:3333/screenshotimg.png",
+            "https://project3backend.harrisviewcodes.uk/screenshotimg.png",
             "screenshotimg.png"
           );
           await downloadFile(
-            "http://192.168.0.8:3333/detailObservation.txt",
+            "https://project3backend.harrisviewcodes.uk/detailObservation.txt",
             "detailObservation.txt"
           );
           await downloadFile(
-            "http://192.168.0.8:3333/detailEarthquake.txt",
+            "https://project3backend.harrisviewcodes.uk/detailEarthquake.txt",
             "detailEarthquake.txt"
           );
         });
