@@ -8,25 +8,22 @@ Scalable Backend Architecture: Built with Express.js, providing a scalable and e
 Cross-Origin Resource Sharing (CORS) Support: Implements secure CORS policies to enable seamless interaction between frontend and backend components.
 Secure Environment Configuration: Utilizes dotenv for secure loading of environment variables, enhancing application security.
 User-Friendly Interface: Offers an intuitive frontend interface, allowing users to initiate scraping and download scraped data effortlessly.
+
+
 Installation
+
 Clone the Repository:
-
-bash
-Copy code
 git clone https://github.com/your-username/numazu-scraper.git
-Install Dependencies:
 
-bash
-Copy code
+Install Dependencies:
 cd numazu-scraper/backend
 npm install
 cd ../frontend
 npm install
+
 Configure Environment Variables:
 Create a .env file in the backend directory and add your environment variables:
 
-plaintext
-Copy code
 PORT=3333
 WEBSC=https://yourdomain.com/screenshotimg.png
 WEBDETO=https://yourdomain.com/detailObservation.txt
@@ -36,25 +33,21 @@ Replace the URLs with the actual paths where you want to store the scraped data.
 
 Usage
 Start the Backend Server:
-
-bash
-Copy code
 cd backend
-npm start
-Start the Frontend Server:
+node backendserver.js
 
-bash
-Copy code
+Start the Frontend Server:
 cd frontend
-npm start
+node frontendserver.js
+
 Access the Frontend Application:
 Navigate to http://localhost:3323 in your web browser.
 
 Initiate Scraping:
 Click on the "Start Retrieval" button to initiate the scraping process.
 
-Download Scraped Data:
-Once the scraping is complete, download the scraped data by clicking the "Download Files" button.
+Download old Scraped Data if scraping fails:
+if neede, download the scraped data by clicking the "Download Files" button.
 
 Contribution Guidelines
 Contributions are welcome! To contribute to Numazu Scraper, please follow these guidelines:
