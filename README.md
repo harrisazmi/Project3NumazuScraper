@@ -56,6 +56,10 @@ Numazu Scraper is a web scraping project that fetches observation and earthquake
 2. Click on the "Scrape" button to initiate the scraping process.
 3. If website laggy or could not obtain the real time data, click on download button to download last real time update data.
 
+## Docker Image Build
+
+Docker File are available for image building.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
